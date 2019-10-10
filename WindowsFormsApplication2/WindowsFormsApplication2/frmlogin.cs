@@ -19,7 +19,8 @@ namespace WindowsFormsApplication2
             InitializeComponent();
         }
         string connetionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=c:\users\user\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\Database1.mdf;Integrated Security=True";
-        private void button3_Click(object sender, EventArgs e)
+        SqlConnection cnn;
+        private void button3_Click(object sender, EventArgs e)//saving the image
         {
             OpenFileDialog open = new OpenFileDialog();
             openFileDialog1.Filter = "image files(*.jpg;*.jpeg;*.gif;*.bmp;)|*.jpg;*.jpeg;*.gif;*.bmp;";
@@ -31,7 +32,7 @@ namespace WindowsFormsApplication2
 
             }
         }
-        byte[] convertimagetobinary(Image ing)
+        byte[] convertimagetobinary(Image ing)//convert image to byte
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -40,7 +41,7 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)//register button
         {
 
             if (txtnusername.Text == "" || txtnpassword.Text == "" || txtnimage.Text == "")
@@ -66,10 +67,9 @@ namespace WindowsFormsApplication2
             pbpic.Image = null;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)//test button
         {
             string connetionString;
-            SqlConnection cnn;
             connetionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=c:\users\user\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\Database1.mdf;Integrated Security=True";
             cnn = new SqlConnection(connetionString);
             cnn.Open();
@@ -77,7 +77,7 @@ namespace WindowsFormsApplication2
             cnn.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)//login button
         {
             SqlConnection cnn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=c:\users\user\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\Database1.mdf;Integrated Security=True");
             String query = "select * from login where username='" + txtusername.Text.Trim() + "'and password='" + txtpassword.Text.Trim() + "'";

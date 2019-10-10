@@ -15,7 +15,7 @@ namespace WindowsFormsApplication2
     public partial class frmmain : Form
     {
         string connectionstring = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=c:\users\user\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\Database1.mdf;Integrated Security=True";
-        public frmmain(string str_Value)
+        public frmmain(string str_Value)//gets the username needs the password then checked for image
         {
             InitializeComponent();
             label1.Text = str_Value;
@@ -28,21 +28,21 @@ namespace WindowsFormsApplication2
             // TODO: Complete member initialization
         }
 
-        private void frmmain_Load(object sender, EventArgs e)
+        private void frmmain_Load(object sender, EventArgs e)//dont know
         {
             // TODO: This line of code loads data into the 'database1DataSet.contacts' table. You can move, or remove it, as needed.
             this.contactsTableAdapter.Fill(this.database1DataSet.contacts);
 
         }
 
-        private void ll1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void ll1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)//link button works and not
         {
             frmlogin objfrmlogin = new frmlogin();
             this.Hide();
             objfrmlogin.Show();
         }
 
-        private void displayToolStripMenuItem_Click(object sender, EventArgs e)
+        private void displayToolStripMenuItem_Click(object sender, EventArgs e)//display the database
         {
             using (SqlConnection sqlcon = new SqlConnection(connectionstring))
             {
@@ -57,12 +57,12 @@ namespace WindowsFormsApplication2
                 textBox5.DataBindings.Add(new Binding("Text", contactsBindingSource, "phonenumber", true));
             }
         }
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)//whelp
         {
 
         }
 
-        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)//adds new values does not add ids
         {
             using (SqlConnection sqlcon = new SqlConnection(connectionstring))
             {
@@ -81,7 +81,7 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void textBox6_TextChanged(object sender, EventArgs e)
+        private void textBox6_TextChanged(object sender, EventArgs e)//finds the word typed
         {
             SqlConnection sqlcon = new SqlConnection(connectionstring);
             string sqlquery = "select * from [dbo].[contacts] where lastname like'" + textBox6.Text + "%'";
@@ -94,7 +94,7 @@ namespace WindowsFormsApplication2
             sqlcon.Close();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)//finds the addressid
         {
             SqlConnection sqlcon = new SqlConnection(connectionstring);
             string sqlquery = "select * from [dbo].[contacts] where addressid like'" + textBox1.Text + "%'";
@@ -107,7 +107,7 @@ namespace WindowsFormsApplication2
             sqlcon.Close();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)//so that i can change cells
         {
             if (e.RowIndex >= 0)
             {
@@ -119,13 +119,13 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)//works
         {
             int rowindex = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(rowindex);
         }
 
-        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)//update to some where
         {
             try
             {
